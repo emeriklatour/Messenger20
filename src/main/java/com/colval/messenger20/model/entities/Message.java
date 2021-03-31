@@ -1,11 +1,12 @@
 package com.colval.messenger20.model.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "message")
-public class Message {
+public class Message implements Serializable {
     @Id
     @Column(name = "message_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,12 +18,11 @@ public class Message {
     @Column(name = "sent_date")
     private Date sentDate;
 
-    @Column(name = "user_id")
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+
+    @JoinColumn(name = "username", referencedColumnName = "username")
     @ManyToOne
     private User user;
 
-    @Column(name = "conversation_id")
     @JoinColumn(name = "conversation_id", referencedColumnName = "conversation_id")
     @ManyToOne
     private Conversation conversation;

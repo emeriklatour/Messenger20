@@ -1,16 +1,17 @@
 package com.colval.messenger20.model.entities;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Table(name = "user")
-public class User {
-    @Id
-    @Column(name = "user_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long userId;
+public class User implements Serializable {
 
     @Column(name = "first_name")
     private String firstName;
@@ -18,19 +19,15 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
+    @Id
     @Column(name = "username")
     private String username;
 
+    @Column(name="password")
+    private String password;
+
     @ManyToMany(mappedBy = "users")
     private List<Conversation> conversations = new ArrayList<>();
-
-    public long getUserId() {
-        return this.userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
 
     public String getFirstName() {
         return this.firstName;
@@ -48,11 +45,27 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getUsername() {
-        return this.username;
+
+    public List<Conversation> getConversations() {
+        return conversations;
     }
 
+    public void setConversations(List<Conversation> conversations) {
+        this.conversations = conversations;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
     public void setUsername(String username) {
         this.username = username;
     }
+
 }
