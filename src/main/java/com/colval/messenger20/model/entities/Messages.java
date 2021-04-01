@@ -5,8 +5,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "message")
-public class Message implements Serializable {
+@Table(name = "messages")
+public class Messages implements Serializable {
     @Id
     @Column(name = "message_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,11 +21,11 @@ public class Message implements Serializable {
 
     @JoinColumn(name = "username", referencedColumnName = "username")
     @ManyToOne
-    private User user;
+    private Users users;
 
     @JoinColumn(name = "conversation_id", referencedColumnName = "conversation_id")
     @ManyToOne
-    private Conversation conversation;
+    private Conversations conversations;
 
     public long getMessageId() {
         return this.messageId;
@@ -51,19 +51,19 @@ public class Message implements Serializable {
         this.sentDate = sentDate;
     }
 
-    public User getUserId() {
-        return this.user;
+    public Users getUserId() {
+        return this.users;
     }
 
-    public void setUserId(User user) {
-        this.user = user;
+    public void setUserId(Users users) {
+        this.users = users;
     }
 
-    public Conversation getConversationId() {
-        return this.conversation;
+    public Conversations getConversationId() {
+        return this.conversations;
     }
 
-    public void setConversationId(Conversation conversation) {
-        this.conversation = conversation;
+    public void setConversationId(Conversations conversations) {
+        this.conversations = conversations;
     }
 }

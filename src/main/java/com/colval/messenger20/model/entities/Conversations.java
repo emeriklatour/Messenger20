@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "conversation")
-public class Conversation implements Serializable {
+@Table(name = "conversations")
+public class Conversations implements Serializable {
     @Id
     @Column(name = "conversation_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,11 +17,11 @@ public class Conversation implements Serializable {
             CascadeType.PERSIST,
             CascadeType.MERGE
     })
-    @JoinTable(name = "user_conversation",
+    @JoinTable(name = "users_conversations",
             joinColumns = @JoinColumn(name = "conversation_id"),
             inverseJoinColumns = @JoinColumn(name = "username")
     )
-    private List<User> users = new ArrayList<>();
+    private List<Users> users = new ArrayList<>();
 
     public long getConversationId() {
         return this.conversationId;
@@ -31,11 +31,11 @@ public class Conversation implements Serializable {
         this.conversationId = conversationId;
     }
 
-    public List<User> getUsers() {
+    public List<Users> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(List<Users> users) {
         this.users = users;
     }
 }

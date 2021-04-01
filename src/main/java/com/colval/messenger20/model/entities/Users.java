@@ -1,17 +1,13 @@
 package com.colval.messenger20.model.entities;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name = "user")
-public class User implements Serializable {
+@Table(name = "users")
+public class Users implements Serializable {
 
     @Column(name = "first_name")
     private String firstName;
@@ -26,8 +22,11 @@ public class User implements Serializable {
     @Column(name="password")
     private String password;
 
+    @Column(name = "enabled")
+    private boolean enabled;
+
     @ManyToMany(mappedBy = "users")
-    private List<Conversation> conversations = new ArrayList<>();
+    private List<Conversations> conversations = new ArrayList<>();
 
     public String getFirstName() {
         return this.firstName;
@@ -46,11 +45,11 @@ public class User implements Serializable {
     }
 
 
-    public List<Conversation> getConversations() {
+    public List<Conversations> getConversations() {
         return conversations;
     }
 
-    public void setConversations(List<Conversation> conversations) {
+    public void setConversations(List<Conversations> conversations) {
         this.conversations = conversations;
     }
 
@@ -67,5 +66,14 @@ public class User implements Serializable {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
 
 }
