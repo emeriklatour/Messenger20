@@ -16,22 +16,20 @@ public class RegisterController {
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new Users());
 
-        return "signup_form";
+        return "register";
     }
 
-    @GetMapping("/register")
-    public String login() {
-        return "register/register";
-    }
 
-    @PostMapping("process_register")
+    @PostMapping("/index")
     public String processRegister(Users user) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
 
-       repo.save(user);
+        repo.save(user);
 
-        return "login/login";
+        return "index";
     }
+
+
 }
