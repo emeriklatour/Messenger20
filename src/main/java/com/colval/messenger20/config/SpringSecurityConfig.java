@@ -22,6 +22,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/user/register").permitAll()
+                .antMatchers("/user/save").permitAll()
                 .antMatchers("/assets/**").permitAll()
                 .anyRequest().authenticated() // config bloc des ressources et urls
                 .and() //fin de la configuration des ressources

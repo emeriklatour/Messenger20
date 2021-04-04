@@ -7,6 +7,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
+@NamedQueries({
+    @NamedQuery(name = "Users.findByUsername", query = "SELECT u FROM Users u WHERE u.username = :username")
+})
 public class Users implements Serializable {
 
     @Column(name = "first_name")
