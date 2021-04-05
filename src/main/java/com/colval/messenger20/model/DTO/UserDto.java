@@ -1,14 +1,21 @@
 package com.colval.messenger20.model.DTO;
 
-public class UserDto {
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
+public class UserDto implements Serializable {
+
+    @NotEmpty(message = "First name can not be empty")
     private String firstName;
 
+    @NotEmpty(message = "Last name can not be empty")
     private String lastName;
 
+    @NotEmpty(message = "Password can not be empty")
     private String password;
-    private String matchingPassword;
 
+    @NotEmpty(message = "Username can not be empty")
     private String username;
 
 
@@ -34,14 +41,6 @@ public class UserDto {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getMatchingPassword() {
-        return matchingPassword;
-    }
-
-    public void setMatchingPassword(String matchingPassword) {
-        this.matchingPassword = matchingPassword;
     }
 
     public String getUsername() {

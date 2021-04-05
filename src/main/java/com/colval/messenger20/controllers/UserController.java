@@ -1,6 +1,7 @@
 package com.colval.messenger20.controllers;
 
 
+import com.colval.messenger20.exception.UserAlreadyExistsAuthenticationException;
 import com.colval.messenger20.model.DTO.UserDto;
 import com.colval.messenger20.model.entities.Authorities;
 import com.colval.messenger20.model.entities.Users;
@@ -10,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,11 +22,9 @@ import javax.validation.Valid;
 @RequestMapping("/user")
 public class UserController {
     private final UserService userService;
-    private final AuthorityService authorityService;
 
-    public UserController(UserService userService, AuthorityService authorityService) {
+    public UserController(UserService userService) {
         this.userService = userService;
-        this.authorityService = authorityService;
     }
 
     @GetMapping("/register")
@@ -36,34 +36,22 @@ public class UserController {
     }
 
     @PostMapping("/save")
-    public String registerUserAccount(@Valid UserDto userDto){
-        Users user;
-        Authorities authority;
-
-        if (userService.readOne(userDto.getUsername()) != null) {
-            throw new IllegalArgumentException("User already exist");
-        } else {
-            user = new Users();
-            user.setUsername(userDto.getUsername());
-            user.setPassword(passwordEncoder().encode(userDto.getPassword()));
-            user.setFirstName(userDto.getFirstName());
-            user.setLastName(userDto.getLastName());
-            user.setEnabled(true);
-            userService.create(user);
-
-            authority = new Authorities();
-            authority.setUsername(userDto.getUsername());
-            authority.setAuthority("USER");
-            authorityService.create(authority);
-
+    public String registerUserAccount(@Valid UserDto userDto, BindingResult bindingResult, Model model){
+        if(bindingResult.hasErrors()){
+            model.addAttribute("user", userDto);
+            return "register/register";
+        }
+        try {
+            userService.register(userDto);
+        }catch(UserAlreadyExistsAuthenticationException e){
+            bindingResult.rejectValue("username", "userDto.username", "An account already exists with this username");
+            model.addAttribute("user", userDto);
+            return "register/register";
         }
 
         return "redirect:/login";
     }
 
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 
 
 

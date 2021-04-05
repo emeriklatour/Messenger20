@@ -17,25 +17,29 @@
         <div class="content">
             <h3>User Registration</h3>
             </hr>
-            <form th:action="@{/user/save}" th:object="${user}" method="post">
+            <form action="#" th:action="@{/user/save}" th:object="${user}" method="post">
                 <div class="form-group mb-3">
                     <label>Username</label>
-                    <input type="text" required th:field="*{username}" class="form-control" />
+                    <input type="text" th:field="*{username}" class="form-control" placeholder="Username"
+                           th:errorclass="is-invalid"/>
                 </div>
 
                 <div class="form-group mb-3">
                     <label>Password</label>
-                    <input type="password" requiered th:field="*{password}" class="form-control" minlength="6" maxlength="10"/>
+                    <input type="password" required th:field="*{password}" class="form-control" placeholder="Password"
+                           minlength="6" maxlength="10"/>
                 </div>
 
                 <div class="form-group mb-3">
                     <label>First Name</label>
-                    <input type="text" required th:field="*{firstName}" class="form-control" minlength="2" maxlength="20"/>
+                    <input type="text" required th:field="*{firstName}" class="form-control" th:errorclass="is-invalid"
+                           placeholder="First Name" minlength="2" maxlength="20"/>
                 </div>
 
                 <div class="form-group mb-3">
                     <label>Last Name</label>
-                    <input type="text" required th:field="*{lastName}" class="form-control" minlength="2" maxlength="20" />
+                    <input type="text" required th:field="*{lastName}" class="form-control" th:errorclass="is-invalid"
+                           placeholder="Last Name" minlength="2" maxlength="20"/>
                 </div>
 
                 <div>
