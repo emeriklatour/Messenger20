@@ -18,25 +18,28 @@
     <main class="form-signin">
         <form action="#" th:action="@{/user/save}" th:object="${userDto}" method="post">
             <h1 class="h3 mb-3 fw-normal">Register</h1>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+                <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+            </div>
             <div class="form-floating">
                 <input type="text" th:field="*{username}" class="form-control" id="username" th:errorclass="is-invalid" placeholder="Username"/>
                 <label for="username">Username</label>
-                <span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">username error</span>
+<!--                <span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">username error</span>-->
             </div>
             <div class="form-floating">
                 <input type="password" th:field="*{password}" class="form-control" id="password" th:errorclass="is-invalid" placeholder="Password"/>
                 <label for="password">Password</label>
-                <span class="error"  th:if="${#fields.hasErrors('password')}" th:errors="*{password}">password error</span>
+<!--                <span class="error"  th:if="${#fields.hasErrors('password')}" th:errors="*{password}">password error</span>-->
             </div>
             <div class="form-floating">
                 <input type="text" th:field="*{firstName}" class="form-control" id="firstname" th:errorclass="is-invalid" placeholder="First Name" />
                 <label for="firstname">First Name</label>
-                <span class="error"  th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First name error</span>
+<!--                <span class="error"  th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First name error</span>-->
             </div>
             <div class="form-floating">
                 <input type="text" th:field="*{lastName}" class="form-control" id="lastname" th:errorclass="is-invalid" placeholder="Last Name" />
                 <label for="lastname">Last Name</label>
-                <span class="error"  th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last name error</span>
+<!--                <span class="error"  th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last name error</span>-->
             </div>
             </br>
             <div class="form-floating">
