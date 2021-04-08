@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -30,29 +31,26 @@ public class UserController {
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         UserDto userDto = new UserDto();
-        model.addAttribute("user", userDto);
+        model.addAttribute("userDto", userDto);
 
         return "register/register";
     }
 
     @PostMapping("/save")
-    public String registerUserAccount(@Valid UserDto userDto, BindingResult bindingResult, Model model){
-        if(bindingResult.hasErrors()){
-            model.addAttribute("user", userDto);
+    public String registerUserAccount(@Valid @ModelAttribute("userDto") UserDto userDto, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("userDto", userDto);
             return "register/register";
-        }
-        try {
-            userService.register(userDto);
-        }catch(UserAlreadyExistsAuthenticationException e){
-            bindingResult.rejectValue("username", "userDto.username", "An account already exists with this username");
-            model.addAttribute("user", userDto);
-            return "register/register";
-        }
+        } else {
+            try {
+                userService.register(userDto);
+            } catch (UserAlreadyExistsAuthenticationException e) {
+                bindingResult.rejectValue("username", "userDto.username", "An account already exists with this username");
+                return "register/register";
 
-        return "redirect:/login";
+            }
+            return "redirect:/login";
+        }
     }
-
-
-
 
 }

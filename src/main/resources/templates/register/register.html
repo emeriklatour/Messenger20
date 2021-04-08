@@ -17,32 +17,32 @@
         <div class="content">
             <h3>User Registration</h3>
             </hr>
-            <form action="#" th:action="@{/user/save}" th:object="${user}" method="post">
+            <form action="#" th:action="@{/user/save}" th:object="${userDto}" method="post">
                 <div class="form-group mb-3">
                     <label>Username</label>
-                    <input type="text" th:field="*{username}" class="form-control" placeholder="Username"
-                           th:errorclass="is-invalid"/>
+                    <input type="text" th:field="*{username}" class="form-control" th:errorclass="is-invalid" placeholder="Username"/>
+                    <span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">username error</span>
                 </div>
 
                 <div class="form-group mb-3">
                     <label>Password</label>
-                    <input type="password" required th:field="*{password}" class="form-control" placeholder="Password"
-                           minlength="6" maxlength="10"/>
+                    <input type="password" th:field="*{password}" class="form-control" th:errorclass="is-invalid" placeholder="Password"/>
+                    <span class="error"  th:if="${#fields.hasErrors('password')}" th:errors="*{password}">password error</span>
                 </div>
 
                 <div class="form-group mb-3">
                     <label>First Name</label>
-                    <input type="text" required th:field="*{firstName}" class="form-control" th:errorclass="is-invalid"
-                           placeholder="First Name" minlength="2" maxlength="20"/>
+                    <input type="text" th:field="*{firstName}" class="form-control" th:errorclass="is-invalid" placeholder="First Name" />
+                    <span class="error"  th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First name error</span>
                 </div>
 
                 <div class="form-group mb-3">
                     <label>Last Name</label>
-                    <input type="text" required th:field="*{lastName}" class="form-control" th:errorclass="is-invalid"
-                           placeholder="Last Name" minlength="2" maxlength="20"/>
+                    <input type="text" th:field="*{lastName}" class="form-control" th:errorclass="is-invalid" placeholder="Last Name" />
+                    <span class="error"  th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last name error</span>
                 </div>
 
-                <div>
+                <div class="form-group mb-3">
                     <button type="submit" class="btn btn-primary">Sign Up</button>
                 </div>
             </form>

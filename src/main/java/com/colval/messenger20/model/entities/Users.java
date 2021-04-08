@@ -1,6 +1,9 @@
 package com.colval.messenger20.model.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,16 +16,23 @@ import java.util.List;
 public class Users implements Serializable {
 
     @Column(name = "first_name")
+    @NotEmpty(message = "First name can not be empty")
+    @Size(max = 100)
     private String firstName;
 
     @Column(name = "last_name")
+    @NotEmpty(message = "Last name can not be empty")
+    @Size(max = 100)
     private String lastName;
 
     @Id
     @Column(name = "username")
+    @NotEmpty(message = "Username can not be empty")
+    @Size(max = 100)
     private String username;
 
     @Column(name="password")
+    @NotBlank(message = "Password can not be blank")
     private String password;
 
     @Column(name = "enabled")
