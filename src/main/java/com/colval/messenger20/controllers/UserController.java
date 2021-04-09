@@ -47,7 +47,6 @@ public class UserController {
             } catch (UserAlreadyExistsAuthenticationException e) {
                 bindingResult.rejectValue("username", "userDto.username", "An account already exists with this username");
                 return "register/register";
-
             }
             return "redirect:/login";
         }

@@ -35,7 +35,8 @@ public class UserService implements IUserService{
 
     @Override
     public void register(UserDto userDto) throws UserAlreadyExistsAuthenticationException {
-        if (readOne(userDto.getUsername()) != null) { throw new UserAlreadyExistsAuthenticationException("User already exists with this username"); }
+        if (readOne(userDto.getUsername()) != null) {
+            throw new UserAlreadyExistsAuthenticationException("User already exists with this username"); }
 
         Users user = new Users();
         user.setUsername(userDto.getUsername());
