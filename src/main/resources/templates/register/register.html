@@ -16,7 +16,7 @@
 
 </head>
 <body class="text-center gradient-bg">
-    <main class="form-signin bg-white rounded-3">
+    <main class="form-signin main-bg">
         <form class="mx-3 mt-3 mb-3" action="#" th:action="@{/user/save}" th:object="${userDto}" method="post">
             <img class="mb-4" th:src="@{/assets/icons/chat-dots-fill.svg}" alt="" width="72" height="57">
             <h1 class="h3 mb-3 fw-normal">New account</h1>
@@ -43,7 +43,7 @@
                 <label for="lastname">Last Name</label>
                 <!--                <span class="error"  th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last name error</span>-->
             </div>
-            <button class="mt-2 w-100 btn btn-lg btn-outline-primary" type="submit">Register</button>
+            <button class="mt-2 w-100 btn color-button-outlined" type="submit">Register</button>
         </form>
     </main>
 
