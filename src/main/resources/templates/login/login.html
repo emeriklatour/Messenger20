@@ -15,24 +15,24 @@
     <link th:href="@{/assets/css/signin.css}" rel="stylesheet"/>
 
 </head>
-<body class="text-center">
-    <main class="form-signin">
-        <form method="post" th:action="@{/login}">
+<body class="text-center gradient-bg">
+    <main class="form-signin bg-white rounded-3">
+        <form class="mx-3 mt-3 mb-3" method="post" th:action="@{/login}">
             <img class="mb-4" th:src="@{/assets/icons/chat-dots-fill.svg}" alt="" width="72" height="57">
             <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
-            <div class="form-floating">
+            <div class="form-floating mb-1">
                 <input type="text" class="form-control" id="username" name="username" th:required placeholder="Username">
                 <label for="username">Username</label>
             </div>
-            <div class="form-floating">
+            <div class="form-floating mb-1">
                 <input type="password" class="form-control" id="password" name="password" th:required placeholder="Password">
                 <label for="password">Password</label>
             </div>
-            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+            <button class="mt-1 w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+            <a th:href="@{'/user/register'}" class="mt-2 w-50 btn btn-sm btn-outline-primary">Register</a>
         </form>
 
-        <a th:href="@{'/user/register'}" class="mt-2 w-50 btn btn-sm btn-outline-primary">Register</a>
         <!--  <button type="button" class="btn btn-link">Register</button>-->
     </main>
 </body>

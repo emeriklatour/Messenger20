@@ -42,3 +42,7 @@ body {
     color: red;
     font-style: italic;
 }
+
+.gradient-bg {
+    background: linear-gradient(to bottom left, #cc00ff 0%, #3399ff 67%);
+}

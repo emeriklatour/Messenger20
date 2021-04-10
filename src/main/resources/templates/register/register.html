@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login</title>
+    <title>Register</title>
 
     <!-- Bootstrap core CSS -->
     <!-- CSS only -->
@@ -15,38 +15,38 @@
 
 
 </head>
-<body class="text-center">
-    <main class="form-signin">
-        <form action="#" th:action="@{/user/save}" th:object="${userDto}" method="post">
+<body class="text-center gradient-bg">
+    <main class="form-signin bg-white rounded-3">
+        <form class="mx-3 mt-3 mb-3" action="#" th:action="@{/user/save}" th:object="${userDto}" method="post">
             <img class="mb-4" th:src="@{/assets/icons/chat-dots-fill.svg}" alt="" width="72" height="57">
-            <h1 class="h3 mb-3 fw-normal">Register</h1>
+            <h1 class="h3 mb-3 fw-normal">New account</h1>
             <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
                 <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
             </div>
-            <div class="form-floating">
+            <div class="form-floating mb-1">
                 <input type="text" th:field="*{username}" class="form-control" id="username" th:errorclass="is-invalid" placeholder="Username"/>
                 <label for="username">Username</label>
-<!--                <span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">username error</span>-->
+                <!--                <span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">username error</span>-->
             </div>
-            <div class="form-floating">
+            <div class="form-floating mb-1">
                 <input type="password" th:field="*{password}" class="form-control" id="password" th:errorclass="is-invalid" placeholder="Password"/>
                 <label for="password">Password</label>
-<!--                <span class="error"  th:if="${#fields.hasErrors('password')}" th:errors="*{password}">password error</span>-->
+                <!--                <span class="error"  th:if="${#fields.hasErrors('password')}" th:errors="*{password}">password error</span>-->
             </div>
-            <div class="form-floating">
+            <div class="form-floating mb-1">
                 <input type="text" th:field="*{firstName}" class="form-control" id="firstname" th:errorclass="is-invalid" placeholder="First Name" />
                 <label for="firstname">First Name</label>
-<!--                <span class="error"  th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First name error</span>-->
+                <!--                <span class="error"  th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First name error</span>-->
             </div>
-            <div class="form-floating">
+            <div class="form-floating mb-1">
                 <input type="text" th:field="*{lastName}" class="form-control" id="lastname" th:errorclass="is-invalid" placeholder="Last Name" />
                 <label for="lastname">Last Name</label>
-<!--                <span class="error"  th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last name error</span>-->
+                <!--                <span class="error"  th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last name error</span>-->
             </div>
-
             <button class="mt-2 w-100 btn btn-lg btn-outline-primary" type="submit">Register</button>
         </form>
     </main>
+
 
 </body>
 </html>
