@@ -1,13 +1,23 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
     <title>Index - Demo Thymeleaf</title>
+
+    <!-- Bootstrap core CSS -->
+    <!-- CSS only -->
+    <link rel="stylesheet" th:href="@{/assets/bootstrap/css/bootstrap.min.css}">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/assets/css/chat.css}" rel="stylesheet"/>
 </head>
-<body>
+<body class="text-center gradient-bg">
+<main class="form-signin main-bg">
 
-<h3 class="card-title" th:text="${Greetings}"></h3>
 
+    <!--  <button type="button" class="btn btn-link">Register</button>-->
+</main>
 </body>
 </html>
