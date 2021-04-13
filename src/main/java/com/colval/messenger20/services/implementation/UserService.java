@@ -52,6 +52,8 @@ public class UserService implements IUserService{
         authorityService.create(authority);
     }
 
+
+
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
