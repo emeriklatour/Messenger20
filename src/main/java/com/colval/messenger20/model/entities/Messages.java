@@ -15,9 +15,6 @@ public class Messages implements Serializable {
     @Column(name = "content")
     private String content;
 
-    @Column(name = "chat_type")
-    private String chatType;
-
     @Column(name = "sent_date")
     private Date sentDate;
 
@@ -68,13 +65,5 @@ public class Messages implements Serializable {
 
     public void setConversationId(Conversations conversations) {
         this.conversations = conversations;
-    }
-
-    public String getChatType() {
-        return chatType;
-    }
-
-    public void setChatType(String chatType) {
-        this.chatType = chatType;
     }
 }
