@@ -12,7 +12,6 @@ body {
 .form-signin {
     width: 100%;
     max-width: 330px;
-    padding: 15px;
     margin: auto;
 }
 
@@ -50,7 +49,6 @@ body {
     max-width: 95%;
     height: 95%;
     margin: 0 auto;
-    padding: 50px;
     position: relative;
     border-radius: 30px;
 }
@@ -77,4 +75,39 @@ body {
     background-color: black;
     border-color: black;
     color: white;
+}
+
+.action-chats {
+    float: left;
+    background-color: #0a53be;
+    width: 33.33333333333333333333%;
+    height: 100%;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+.action {
+    float: left;
+    width: 100%;
+    height: 15%;
+    background-color: orange;
+    border-top-left-radius: 30px;
+}
+
+.chats{
+    float: left;
+    width: 100%;
+    height: 85%;
+    background-color: green;
+    border-bottom-left-radius: 30px;
+    overflow: scroll;
+}
+
+.chatroom {
+    float: left;
+    background-color: red;
+    width: 66.66666666666666666%;
+    height: 100%;
+    border-bottom-right-radius: 30px;
+    border-top-right-radius: 30px;
 }
