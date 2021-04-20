@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,12 +13,16 @@
 
     <!-- Custom styles for this template -->
     <link th:href="@{/assets/css/chat.css}" rel="stylesheet"/>
+    <link th:href="@{/assets/css/convo.css}" rel="stylesheet">
 </head>
 <body class="text-center gradient-bg">
 <main class="form-signin main-bg">
     <div class="action-chats">
         <div class="action">
             <p class="h3">action/search</p>
+            <div class="topnav">
+                <input type="text" placeholder="Search..">
+            </div>
         </div>
         <div class="chats">
             <p class="h3">conversations</p>
@@ -25,6 +30,32 @@
     </div>
     <div class="chatroom">
         <p class="h3">room</p>
+
+        <div class="container">
+
+            <p>Hello. How are you today?</p>
+            <span class="time-right">11:00</span>
+        </div>
+
+        <div class="container darker">
+            <p class="name" ><span th:text="${name}">value</span></p>
+            <p>Hey! I'm fine. Thanks for asking!</p>
+            <span class="time-left">11:01</span>
+        </div>
+
+        <div class="container">
+            <p>Sweet! So, what do you wanna do today?</p>
+            <span class="time-right">11:02</span>
+        </div>
+
+        <div class="container darker">
+            <p class="name" ><span th:text="${name}">value</span></p>
+            <p>Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
+            <span class="time-left">11:05</span>
+        </div>
+        <br>
+
+        <input class="messagebox" type="text" id="msg" name="msg" placeholder="Message..."> <input type="submit" value="Send">
     </div>
 
 

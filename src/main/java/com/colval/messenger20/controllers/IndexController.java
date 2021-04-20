@@ -29,7 +29,8 @@ public class IndexController {
         LocalDateTime now = LocalDateTime.now();
         String strDate= dtf.format(now);
 
-        model.addAttribute("Greetings", "Hello World " + getuser()+ " " + strDate);
+        //model.addAttribute("Greetings", "Hello World " + getuser()+ " " + strDate);
+        model.addAttribute("name", getuser());
         return "index/index"; //read as folder/file
     }
 
