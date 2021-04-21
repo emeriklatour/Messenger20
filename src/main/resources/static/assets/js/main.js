@@ -4,6 +4,7 @@
 var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
+var activeUsers = document.querySelector('#activeUsers');
 var connectingElement = document.querySelector('#connecting');
 
 var stompClient = null;
@@ -76,6 +77,7 @@ function onMessageReceived(payload) {
         var usernameText = document.createTextNode(message.sender);
         usernameElement.appendChild(usernameText);
         messageElement.appendChild(usernameElement);
+
     }
 
     var textElement = document.createElement('span');
@@ -83,9 +85,14 @@ function onMessageReceived(payload) {
     textElement.appendChild(messageText);
 
     messageElement.appendChild(textElement);
+    if (message.type == 'CHAT'){
+        messageArea.appendChild(messageElement);
+        messageArea.scrollTop = messageArea.scrollHeight;
+    } else {
+        activeUsers.appendChild(messageElement);
+        activeUsers.scrollTop = activeUsers.scrollHeight;
+    }
 
-    messageArea.appendChild(messageElement);
-    messageArea.scrollTop = messageArea.scrollHeight;
 }
 
 

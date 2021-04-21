@@ -79,7 +79,7 @@ body {
 
 .action-chats {
     float: left;
-    background-color: #0a53be;
+    background-color: white;
     width: 33.33333333333333333333%;
     height: 100%;
     border-top-left-radius: 30px;
@@ -104,9 +104,18 @@ body {
     float: left;
     width: 100%;
     height: 85%;
-    background-color: green;
+    background-color: white;
     border-bottom-left-radius: 30px;
+}
+
+#activeUsers {
+    list-style-type: none;
+    background-color: white;
+    margin: 0;
+    overflow: auto;
     overflow-y: scroll;
+    padding: 0 20px 0px 20px;
+    height: 90%;
 }
 
 .chatroom {
@@ -168,7 +177,8 @@ body {
 }
 
 .nickname  {
-    color:blue;margin-right:20px;
+    color:#00B2FF;
+    margin-right:20px;
 }
 .hidden {
     display: none;
