@@ -29,9 +29,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and() //fin de la configuration des ressources
                 .formLogin() //connexion via un formulaire
                 .loginPage("/login")
+                .defaultSuccessUrl("/", true)
                 .permitAll()
                 .and()
-                .logout().permitAll()
+                .logout()
+                .logoutUrl("/logout")
                 .permitAll()
                 .and()
                 .exceptionHandling().accessDeniedHandler(accessDeniedHandler);

@@ -14,53 +14,49 @@
     <!-- Custom styles for this template -->
     <link th:href="@{/assets/css/chat.css}" rel="stylesheet"/>
     <link th:href="@{/assets/css/convo.css}" rel="stylesheet">
+
+    <!-- https://cdnjs.com/libraries/sockjs-client -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+    <!-- https://cdnjs.com/libraries/stomp.js/ -->
+    <script  src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 </head>
 <body class="text-center gradient-bg">
 <main class="form-signin main-bg">
     <div class="action-chats">
         <div class="action">
-            <p class="h3">action/search</p>
-            <div class="topnav">
-                <input type="text" placeholder="Search..">
-            </div>
+            <form th:action="@{/logout}">
+                <span id="username" th:utext="${username}"></span>
+                <button  id="logout" type="submit" class="mt-2 w-75 btn btn-sm color-button-outlined">logout</button>
+            </form>
         </div>
         <div class="chats">
             <p class="h3">conversations</p>
         </div>
     </div>
     <div class="chatroom">
-        <p class="h3">room</p>
         <div class="room">
-            <div class="container">
+            <div id="chat-container">
+                <div class="chat-header">
+                    <h3>Chat room</h3>
+                </div>
 
-                <p>Hello. How are you today?</p>
-                <span class="time-right">11:00</span>
+                <hr/>
+
+                <div id="connecting">Connecting...</div>
+                <ul id="messageArea">
+                </ul>
             </div>
 
-            <div class="container darker">
-                <p class="name" ><span th:text="${name}">value</span></p>
-                <p>Hey! I'm fine. Thanks for asking!</p>
-                <span class="time-left">11:01</span>
-            </div>
 
-            <div class="container">
-                <p>Sweet! So, what do you wanna do today?</p>
-                <span class="time-right">11:02</span>
-            </div>
-
-            <div class="container darker">
-                <p class="name" ><span th:text="${name}">value</span></p>
-                <p>Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
-                <span class="time-left">11:05</span>
-            </div>
         </div>
         <div class="send-message">
-            <form>
-                <input id="message" placeholder="Type here..." type="text" class="form-control">
-                <button id="sendmessage" type="submit" class="mt-2 w-75 btn btn-sm color-button-outlined">Send</button>
+            <form id="messageForm" name="messageForm">
+                <input id="message" placeholder="Type here..." type="text" autocomplete="off" class="form-control">
+                <button id="send-message" type="submit" class="mt-2 w-75 btn btn-sm color-button-outlined">Send</button>
             </form>
-
+            <script th:src="@{assets/js/main.js}"></script>
         </div>
+
 
     </div>
 

@@ -90,8 +90,14 @@ body {
     float: left;
     width: 100%;
     height: 15%;
-    background-color: orange;
+    padding-top: 5%;
+    background-color: white;
     border-top-left-radius: 30px;
+}
+
+.action span{
+    margin-top: 5%;
+    margin-right: 1%;
 }
 
 .chats{
@@ -114,7 +120,6 @@ body {
 
 .room{
     height: 85%;
-    overflow-y: scroll;
 }
 .send-message{
     max-height: 10%;
@@ -129,8 +134,14 @@ body {
 
 }
 
-#sendmessage{
+#send-message{
     max-width: 15%;
+    border-radius: 30px;
+    padding: 0.5%;
+}
+
+#logout{
+    max-width: 100px;
     border-radius: 30px;
     padding: 0.5%;
 }
@@ -153,5 +164,96 @@ body {
 {
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-    background-color: #D62929;
+    background-color: lightgray;
+}
+
+.nickname  {
+    color:blue;margin-right:20px;
+}
+.hidden {
+    display: none;
+}
+
+.user-container {
+    float: right;
+    margin-right:5px;
+    width: 17%;
+}
+
+.user-container button{
+    border-radius: 30px;
+    max-width: 100px;
+}
+
+#chat-container {
+    position: relative;
+    height: 100%;
+}
+
+#chat-container #messageForm {
+    padding: 20px;
+}
+
+#chat-container {
+    border: 2px solid white;
+    background-color:  white ;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 90%;
+    position: relative;
+    border-radius: 30px;
+
+}
+
+#chat-container ul {
+    list-style-type: none;
+    background-color: white;
+    margin: 0;
+    overflow: auto;
+    overflow-y: scroll;
+    padding: 0 20px 0px 20px;
+    height: calc(100% - 150px);
+}
+
+#chat-container #messageForm {
+    padding: 20px;
+}
+
+#chat-container ul li {
+    line-height: 1.5rem;
+    padding: 10px 20px;
+    margin: 0;
+    border-bottom: 1px solid white;
+}
+
+#chat-container ul li p {
+    margin: 0;
+}
+
+#chat-container .event-message {
+    width: 100%;
+    text-align: center;
+    clear: both;
+}
+
+#chat-container .event-message p {
+    color: white;
+    font-size: 14px;
+    word-wrap: break-word;
+}
+
+#chat-container .chat-message {
+    position: relative;
+}
+
+#messageForm .input-message  {
+    float: left;
+    width: calc(100% - 85px);
+}
+
+.connecting {
+    text-align: center;
+    color: white;
+    width: 100%;
 }
