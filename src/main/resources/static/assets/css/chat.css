@@ -165,7 +165,7 @@ body {
 
 *::-webkit-scrollbar
 {
-    width: 5px;
+    width: 0px;
     background-color: #F5F5F5;
 }
 
@@ -217,6 +217,7 @@ body {
 }
 
 #chat-container ul {
+    text-align: left;
     list-style-type: none;
     background-color: white;
     margin: 0;
