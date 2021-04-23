@@ -7,6 +7,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "conversations")
+@NamedQueries({
+        @NamedQuery(name = "Conversations.findById", query = "SELECT c FROM Conversations c WHERE c.conversationId = :conversationId")
+})
 public class Conversations implements Serializable {
     @Id
     @Column(name = "conversation_id")

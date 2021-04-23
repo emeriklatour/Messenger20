@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface IConversationRepository extends JpaRepository<Conversations, Long> {
-
+    Conversations findById(int conversationId);
 }

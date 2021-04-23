@@ -1,5 +1,8 @@
 package com.colval.messenger20.model.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -13,33 +16,28 @@ import java.util.List;
 @NamedQueries({
     @NamedQuery(name = "Users.findByUsername", query = "SELECT u FROM Users u WHERE u.username = :username")
 })
+@NoArgsConstructor
+@AllArgsConstructor
 public class Users implements Serializable {
 
     @Column(name = "first_name")
-    @NotEmpty(message = "First name can not be empty")
-    @Size(max = 100)
     private String firstName;
 
     @Column(name = "last_name")
-    @NotEmpty(message = "Last name can not be empty")
-    @Size(max = 100)
     private String lastName;
 
     @Id
     @Column(name = "username")
-    @NotEmpty(message = "Username can not be empty")
-    @Size(max = 100)
     private String username;
 
     @Column(name="password")
-    @NotBlank(message = "Password can not be blank")
     private String password;
 
     @Column(name = "enabled")
     private boolean enabled;
 
-    @ManyToMany(mappedBy = "users")
-    private List<Conversations> conversations = new ArrayList<>();
+//    @ManyToMany(mappedBy = "users")
+//    private List<Conversations> conversations = new ArrayList<>();
 
     public String getFirstName() {
         return this.firstName;
@@ -58,13 +56,13 @@ public class Users implements Serializable {
     }
 
 
-    public List<Conversations> getConversations() {
-        return conversations;
-    }
-
-    public void setConversations(List<Conversations> conversations) {
-        this.conversations = conversations;
-    }
+//    public List<Conversations> getConversations() {
+//        return conversations;
+//    }
+//
+//    public void setConversations(List<Conversations> conversations) {
+//        this.conversations = conversations;
+//    }
 
     public String getPassword() {
         return password;
@@ -88,5 +86,14 @@ public class Users implements Serializable {
         this.enabled = enabled;
     }
 
-
+    @Override
+    public String toString() {
+        return "Users{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", enabled=" + enabled +
+                '}';
+    }
 }

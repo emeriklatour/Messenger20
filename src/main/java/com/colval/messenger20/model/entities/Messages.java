@@ -15,21 +15,20 @@ public class Messages implements Serializable {
     @Column(name = "content")
     private String content;
 
-    @Column(name="chat_type")
-    private String chatType;
+    @Column(name="type")
+    private String type;
 
 
     @Column(name = "sent_date")
     private Date sentDate;
 
-
-    @JoinColumn(name = "username", referencedColumnName = "username")
     @ManyToOne
+    @JoinColumn(name = "username", referencedColumnName = "username")
     private Users users;
 
-    @JoinColumn(name = "conversation_id", referencedColumnName = "conversation_id")
+/*    @JoinColumn(name = "conversation_id", referencedColumnName = "conversation_id")
     @ManyToOne
-    private Conversations conversations;
+    private Conversations conversations;*/
 
     public long getMessageId() {
         return this.messageId;
@@ -63,19 +62,19 @@ public class Messages implements Serializable {
         this.users = users;
     }
 
-    public Conversations getConversationId() {
+/*    public Conversations getConversationId() {
         return this.conversations;
     }
 
     public void setConversationId(Conversations conversations) {
         this.conversations = conversations;
+    }*/
+
+    public String getType() {
+        return type;
     }
 
-    public String getChatType() {
-        return chatType;
-    }
-
-    public void setChatType(String chatType) {
-        this.chatType = chatType;
+    public void setType(String type) {
+        this.type = type;
     }
 }

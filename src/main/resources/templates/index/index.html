@@ -52,14 +52,14 @@
 
         </div>
         <div class="send-message">
-            <form id="messageForm" name="messageForm">
-                <input id="message" placeholder="Type here..." type="text" autocomplete="off" class="form-control">
+            <form id="messageForm" name="messageForm" th:action="@{/chat/save}" th:object="${messageDto}" method="post">
+                <input th:field="*{content}" id="message" placeholder="Type here..." type="text" autocomplete="off" class="form-control">
                 <button id="send-message" type="submit" class="mt-2 w-75 btn btn-sm color-button-outlined">Send</button>
             </form>
-            <script th:src="@{assets/js/main.js}"></script>
+
         </div>
 
-
+        <script th:src="@{assets/js/main.js}"></script>
     </div>
 
 

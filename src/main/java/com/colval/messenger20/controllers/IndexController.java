@@ -1,28 +1,27 @@
 package com.colval.messenger20.controllers;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
-
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import com.colval.messenger20.model.DTO.MessageDto;
+import com.colval.messenger20.services.implementation.SessionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class IndexController {
+    private final SessionService sessionService;
+
+    @Autowired
+    public IndexController(SessionService sessionService) {
+        this.sessionService = sessionService;
+    }
 
     @GetMapping("/") //GetMapping source de fichiers == resource/templates
     public String index(Model model){
-
-        model.addAttribute("username", getuser());
+        MessageDto messageDto = new MessageDto();
+        model.addAttribute("messageDto", messageDto);
+        model.addAttribute("username", sessionService.getuser());
         return "index/index"; //read as folder/file
     }
 
@@ -31,14 +30,7 @@ public class IndexController {
         return "login/login";
     }
 
-    private String getuser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (!(authentication instanceof AnonymousAuthenticationToken)) {
-            String currentUserName = authentication.getName();
-            return currentUserName;
-        }
-        return null;
-    }
+
 
 }
 
