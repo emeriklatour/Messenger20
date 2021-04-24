@@ -44,7 +44,6 @@ function onError(error) {
 
 
 function sendMessage(event) {
-    messageForm.submit();
     var messageContent = messageInput.value.trim();
     if(messageContent && stompClient) {
         var chatMessage = {
@@ -95,5 +94,6 @@ function onMessageReceived(payload) {
     }
 
 }
+
 
 messageForm.addEventListener('submit', sendMessage, true);

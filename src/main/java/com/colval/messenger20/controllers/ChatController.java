@@ -4,6 +4,8 @@ import com.colval.messenger20.model.DTO.MessageDto;
 import com.colval.messenger20.services.implementation.MessageService;
 import com.colval.messenger20.services.implementation.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,12 +28,12 @@ public class ChatController {
     }
 
     @RequestMapping(path="/save",method = RequestMethod.POST)
-    public String saveChat(@Valid @ModelAttribute("messageDto") MessageDto messageDto){
+    public String saveChat(@Valid @ModelAttribute("messageDto") MessageDto messageDto, HttpServletRequest request){
         String sender = sessionService.getuser();
         messageDto.setSender(sender);
         messageService.create(messageDto, sender);
-
-        return "redirect:/";
+        String referer = request.getHeader("Referer");
+        return "redirect:"+ referer;
 
     }
 }
