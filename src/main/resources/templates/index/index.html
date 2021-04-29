@@ -1,55 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <title>Index - Demo Thymeleaf</title>
-
-    <!-- Bootstrap core CSS -->
-    <!-- CSS only -->
-    <link rel="stylesheet" th:href="@{/assets/bootstrap/css/bootstrap.min.css}">
-
-    <!-- Custom styles for this template -->
-    <link th:href="@{/assets/css/chat.css}" rel="stylesheet"/>
-    <link th:href="@{/assets/css/convo.css}" rel="stylesheet">
-
-    <!-- https://cdnjs.com/libraries/sockjs-client -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
-    <!-- https://cdnjs.com/libraries/stomp.js/ -->
-    <script  src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+  <meta charset="UTF-8">
+  <title>$Title$</title>
 </head>
-<body class="text-center gradient-bg">
-<main class="form-signin main-bg">
-    <div class="action-chats">
-        <div class="action">
-            <form th:action="@{/logout}">
-                <span id="username" th:utext="${username}"></span>
-                <button  id="logout" type="submit" class="mt-2 w-75 btn btn-sm color-button-outlined">logout</button>
-            </form>
-        </div>
-        <div class="chats">
-            <p class="h3">Active users</p>
-            <ul id="activeUsers">
-            </ul>
-        </div>
-    </div>
-    <div class="chatroom">
-        <div th:replace="fragments/messageArea::room"></div>
-        <div class="send-message">
-            <form id="messageForm" name="messageForm" th:action="@{/chat/save}" th:object="${messageDto}" method="post">
-                <input th:field="*{content}" id="message" placeholder="Type here..." type="text" autocomplete="off" class="form-control">
-                <button id="send-message" type="submit" class="mt-2 w-75 btn btn-sm color-button-outlined">Send</button>
-            </form>
-
-        </div>
-
-        <script th:src="@{assets/js/main.js}"></script>
-    </div>
-
-
-    <!--  <button type="button" class="btn btn-link">Register</button>-->
-</main>
+<body>
+$END$
 </body>
 </html>
