@@ -1,10 +1,7 @@
 package com.colval.messenger20.config.listener;
 
 
-import com.colval.messenger20.model.ChatMessage;
 import com.colval.messenger20.model.DTO.MessageDto;
-import com.colval.messenger20.model.entities.Messages;
-import com.colval.messenger20.services.IUserService;
 import com.colval.messenger20.services.implementation.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -74,7 +74,6 @@ function onMessageReceived(payload) {
         var usernameElement = document.createElement('strong');
         usernameElement.classList.add('nickname');
         var usernameText = document.createTextNode(message.sender);
-        var usernameText = document.createTextNode(message.sender);
         usernameElement.appendChild(usernameText);
         messageElement.appendChild(usernameElement);
 

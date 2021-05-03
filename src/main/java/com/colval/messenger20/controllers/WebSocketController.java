@@ -1,7 +1,6 @@
 package com.colval.messenger20.controllers;
 
 import com.colval.messenger20.model.DTO.MessageDto;
-import com.colval.messenger20.model.entities.Messages;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
