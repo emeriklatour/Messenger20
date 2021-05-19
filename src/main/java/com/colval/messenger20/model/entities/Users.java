@@ -1,6 +1,7 @@
 package com.colval.messenger20.model.entities;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -12,13 +13,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "users")
-@NamedQueries({
-    @NamedQuery(name = "Users.findByUsername", query = "SELECT u FROM Users u WHERE u.username = :username")
-})
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
+@Table(name = "users")
+@NamedQueries({
+        @NamedQuery(name = "Users.findByUsername", query = "SELECT u FROM Users u WHERE u.username = :username")
+})
 public class Users implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
+    private Short userId;
 
     @Column(name = "first_name")
     private String firstName;
@@ -26,7 +32,6 @@ public class Users implements Serializable {
     @Column(name = "last_name")
     private String lastName;
 
-    @Id
     @Column(name = "username")
     private String username;
 
@@ -35,65 +40,4 @@ public class Users implements Serializable {
 
     @Column(name = "enabled")
     private boolean enabled;
-
-//    @ManyToMany(mappedBy = "users")
-//    private List<Conversations> conversations = new ArrayList<>();
-
-    public String getFirstName() {
-        return this.firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return this.lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-
-//    public List<Conversations> getConversations() {
-//        return conversations;
-//    }
-//
-//    public void setConversations(List<Conversations> conversations) {
-//        this.conversations = conversations;
-//    }
-
-    public String getPassword() {
-        return password;
-    }
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    @Override
-    public String toString() {
-        return "Users{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", enabled=" + enabled +
-                '}';
-    }
 }

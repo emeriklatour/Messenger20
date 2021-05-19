@@ -3,19 +3,12 @@ package com.colval.messenger20.controllers;
 
 import com.colval.messenger20.exception.UserAlreadyExistsAuthenticationException;
 import com.colval.messenger20.model.DTO.UserDto;
-import com.colval.messenger20.model.entities.Authorities;
-import com.colval.messenger20.model.entities.Users;
-import com.colval.messenger20.services.implementation.AuthorityService;
 import com.colval.messenger20.services.implementation.UserService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import com.colval.messenger20.services.mappers.UserMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -23,9 +16,11 @@ import javax.validation.Valid;
 @RequestMapping("/user")
 public class UserController {
     private final UserService userService;
+    private final UserMapper userMapper;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserMapper userMapper) {
         this.userService = userService;
+        this.userMapper = userMapper;
     }
 
     @GetMapping("/register")
@@ -34,6 +29,14 @@ public class UserController {
         model.addAttribute("userDto", userDto);
 
         return "register/register";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editUser(Model model, @PathVariable Short id) {
+        UserDto userDto = this.userService.readOne(id).map(userMapper::entityToDto).get();
+
+        model.addAttribute("userDto", userDto);
+        return "edit/edit";
     }
 
     @PostMapping("/save")

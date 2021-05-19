@@ -12,6 +12,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserService implements IUserService{
     private final IUserRepository userRepository;
@@ -29,27 +31,42 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public Users readOne(String username) {
+    public Users findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
     @Override
-    public void register(UserDto userDto) throws UserAlreadyExistsAuthenticationException {
-        if (readOne(userDto.getUsername()) != null) {
-            throw new UserAlreadyExistsAuthenticationException("User already exists with this username"); }
+    public Optional<Users> readOne(Short id) {
+        return userRepository.findById(id);
+    }
 
-        Users user = new Users();
-        user.setUsername(userDto.getUsername());
-        user.setPassword(passwordEncoder().encode(userDto.getPassword()));
-        user.setFirstName(userDto.getFirstName());
-        user.setLastName(userDto.getLastName());
-        user.setEnabled(true);
+    @Override
+    public void register(UserDto userDto) throws UserAlreadyExistsAuthenticationException {
+        Users user;
+        if(userDto.getUserId() != null){
+            user = this.readOne(userDto.getUserId()).get();
+            user.setFirstName(userDto.getFirstName());
+            user.setLastName(userDto.getLastName());
+            user.setPassword(passwordEncoder().encode(userDto.getPassword()));
+        } else {
+            if (findByUsername(userDto.getUsername()) != null) {
+                throw new UserAlreadyExistsAuthenticationException("User already exists with this username"); }
+
+            user = new Users();
+            user.setUsername(userDto.getUsername());
+            user.setPassword(passwordEncoder().encode(userDto.getPassword()));
+            user.setFirstName(userDto.getFirstName());
+            user.setLastName(userDto.getLastName());
+            user.setEnabled(true);
+
+
+            Authorities authority = new Authorities();
+            authority.setUsername(userDto.getUsername());
+            authority.setAuthority("USER");
+            authorityService.create(authority);
+        }
         this.create(user);
 
-        Authorities authority = new Authorities();
-        authority.setUsername(userDto.getUsername());
-        authority.setAuthority("USER");
-        authorityService.create(authority);
     }
 
 

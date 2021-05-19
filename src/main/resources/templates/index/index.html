@@ -25,7 +25,8 @@
   <div class="action-chats">
     <div class="action">
       <form th:action="@{/logout}">
-        <span id="username" th:utext="${username}"></span>
+        <a id="username" th:href="${'/user/edit/'+ user.getUserId()}" th:utext="${username}"></a>
+<!--        <span id="username" th:utext="${username}"></span>-->
         <button  id="logout" type="submit" class="mt-2 w-75 btn btn-sm color-button-outlined">logout</button>
       </form>
     </div>
