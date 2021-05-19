@@ -37,7 +37,7 @@
       <!--                <span class="error"  th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last name error</span>-->
     </div>
     <div class="form-floating mb-1">
-      <input type="password" th:field="*{password}" class="form-control" id="password" th:errorclass="is-invalid" placeholder="Password"/>
+      <input type="password" th:field="*{password}" th:value="*{password}" class="form-control" id="password" th:errorclass="is-invalid" placeholder="Password"/>
       <label for="password">Password</label>
       <!--                <span class="error"  th:if="${#fields.hasErrors('password')}" th:errors="*{password}">password error</span>-->
     </div>
