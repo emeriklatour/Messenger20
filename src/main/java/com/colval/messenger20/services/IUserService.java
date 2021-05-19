@@ -10,5 +10,6 @@ public interface IUserService {
     Users create(Users user);
     Users findByUsername(String username);
     Optional<Users> readOne(Short id);
+    void save(UserDto userDto);
     void register(UserDto userDto) throws UserAlreadyExistsAuthenticationException;
 }

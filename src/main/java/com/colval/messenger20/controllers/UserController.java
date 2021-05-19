@@ -55,4 +55,15 @@ public class UserController {
         }
     }
 
+    @PostMapping("/edit/save")
+    public String saveUserAccount(@Valid @ModelAttribute("userDto") UserDto userDto, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("userDto", userDto);
+            return "edit/edit";
+        }
+        userService.save(userDto);
+
+        return "redirect:/";
+
+    }
 }

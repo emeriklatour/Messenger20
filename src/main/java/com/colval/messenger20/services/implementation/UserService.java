@@ -43,30 +43,36 @@ public class UserService implements IUserService{
     @Override
     public void register(UserDto userDto) throws UserAlreadyExistsAuthenticationException {
         Users user;
-        if(userDto.getUserId() != null){
+
+        if (findByUsername(userDto.getUsername()) != null) {
+            throw new UserAlreadyExistsAuthenticationException("User already exists with this username"); }
+
+        user = new Users();
+        user.setUsername(userDto.getUsername());
+        user.setPassword(passwordEncoder().encode(userDto.getPassword()));
+        user.setFirstName(userDto.getFirstName());
+        user.setLastName(userDto.getLastName());
+        user.setEnabled(true);
+
+
+        Authorities authority = new Authorities();
+        authority.setUsername(userDto.getUsername());
+        authority.setAuthority("USER");
+        authorityService.create(authority);
+        this.create(user);
+
+    }
+
+    @Override
+    public void save(UserDto userDto) {
+        Users user;
+        if (userDto.getUserId() != null) {
             user = this.readOne(userDto.getUserId()).get();
             user.setFirstName(userDto.getFirstName());
             user.setLastName(userDto.getLastName());
             user.setPassword(passwordEncoder().encode(userDto.getPassword()));
-        } else {
-            if (findByUsername(userDto.getUsername()) != null) {
-                throw new UserAlreadyExistsAuthenticationException("User already exists with this username"); }
-
-            user = new Users();
-            user.setUsername(userDto.getUsername());
-            user.setPassword(passwordEncoder().encode(userDto.getPassword()));
-            user.setFirstName(userDto.getFirstName());
-            user.setLastName(userDto.getLastName());
-            user.setEnabled(true);
-
-
-            Authorities authority = new Authorities();
-            authority.setUsername(userDto.getUsername());
-            authority.setAuthority("USER");
-            authorityService.create(authority);
+            this.create(user);
         }
-        this.create(user);
-
     }
 
 
